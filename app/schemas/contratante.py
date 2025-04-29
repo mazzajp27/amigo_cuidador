@@ -7,7 +7,7 @@ class ContratanteBase(BaseModel):
     nome: str
     telefone: Optional[str] = None
     telefone_emergencia: Optional[str] = None
-    email: Optional[EmailStr] = None
+    email: Optional[str] = None
     senha: Optional[str] = None
     endereco: Optional[str] = None
     genero: Optional[str] = None 

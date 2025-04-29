@@ -1,13 +1,18 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
+import os
+from dotenv import load_dotenv
 
+load_dotenv()
 
 # Para usar SQLite (arquivo local)
-DATABASE_URL = 'sqlite:///./shoes.db'
+DATABASE_URL = os.getenv("sqlite")
+
 
 # Se depois quiser trocar para PostgreSQL, é só comentar o de cima e descomentar esse:
-# DATABASE_URL = 'postgresql://postgres:Apex123.@localhost:5432/shoes'
+# DATABASE_URL = os.getenv("url_banco")
+
 
 # Criação do engine
 engine = create_engine(

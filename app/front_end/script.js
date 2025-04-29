@@ -1,42 +1,53 @@
-const apiUrl = "http://127.0.0.1:8000";
-
-document.getElementById("shoeForm").addEventListener("submit", async function(e) {
+document.getElementById("contratanteForm").addEventListener("submit", async function (e) {
     e.preventDefault();
 
-    const data = {
+    const contratante = {
+        cpf: document.getElementById("cpf").value,
         nome: document.getElementById("nome").value,
-        preco: parseFloat(document.getElementById("preco").value),
+        idade: parseInt(document.getElementById("idade").value),
+        genero: document.getElementById("genero").value === "true",
+        email: document.getElementById("email").value,
         descricao: document.getElementById("descricao").value,
-        quantidade: parseInt(document.getElementById("quantidade").value),
+        quantidade: parseInt(document.getElementById("quantidade").value)
     };
 
-    const response = await fetch(`${apiUrl}/insert`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
-    });
+    try {
+        const response = await fetch("http://127.0.0.1:8000/contratantes/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(contratante)
+        });
 
-    if (response.ok) {
-        alert("Tênis cadastrado com sucesso!");
-        listarTenis();
-    } else {
-        alert("Erro ao cadastrar tênis.");
+        if (!response.ok) {
+            throw new Error("Erro ao cadastrar contratante");
+        }
+
+        alert("Contratante cadastrado com sucesso!");
+        listarContratantes();  // Atualiza lista
+    } catch (error) {
+        alert(error.message);
     }
 });
 
-async function listarTenis() {
-    const response = await fetch(`${apiUrl}/qtd_shoes`);
-    const tenis = await response.json();
-
-    const lista = document.getElementById("shoeList");
+async function listarContratantes() {
+    const lista = document.getElementById("contratanteList");
     lista.innerHTML = "";
 
-    tenis.forEach(shoe => {
-        const item = document.createElement("li");
-        item.textContent = `${shoe.nome} - R$${shoe.preco} (${shoe.quantidade} unidades)`;
-        lista.appendChild(item);
-    });
+    try {
+        const response = await fetch("http://127.0.0.1:8000/contratante/");
+        const data = await response.json();
+
+        data.forEach(c => {
+            const item = document.createElement("li");
+            item.textContent = `${c.nome} - ${c.email}`;
+            lista.appendChild(item);
+        });
+    } catch (error) {
+        console.error("Erro ao carregar contratantes:", error);
+    }
 }
 
-// Chama automaticamente ao carregar a página
-listarTenis();
+// Chamada inicial para preencher a lista
+listarContratantes();
