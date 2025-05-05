@@ -1,0 +1,8 @@
+Parametros para utilizar o postgresql
+
+usuario = seu usuário do banco
+senha = seu senha do banco
+banco = nome do banco para se conectar
+url_banco = postgresql://${usuario}:${senha}.@localhost:5432/${banco}
+
+

@@ -12,7 +12,7 @@ document.getElementById("contratanteForm").addEventListener("submit", async func
     };
 
     try {
-        const response = await fetch("http://127.0.0.1:8000/contratantes/", {
+        const response = await fetch("http://127.0.0.1:8000/api/contratante/", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -36,7 +36,7 @@ async function listarContratantes() {
     lista.innerHTML = "";
 
     try {
-        const response = await fetch("http://127.0.0.1:8000/contratante/");
+        const response = await fetch("http://127.0.0.1:8000/api/contratantes/");
         const data = await response.json();
 
         data.forEach(c => {
