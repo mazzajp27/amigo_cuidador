@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Float, Numeric, Boolean
+from sqlalchemy import Column, Integer, String, Float, Numeric, Boolean, Date
 from app.database import Base
 
 class Contratante(Base):
@@ -12,4 +12,4 @@ class Contratante(Base):
     senha = Column(String)
     endereco = Column(String)
     genero = Column(String) 
-    idade = Column(Integer)
+    data_nascimento = Column(Date)

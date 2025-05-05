@@ -2,6 +2,7 @@
 
 from pydantic import BaseModel, EmailStr
 from typing import Optional
+from datetime import date
 
 class ContratanteBase(BaseModel):
     nome: str
@@ -11,7 +12,7 @@ class ContratanteBase(BaseModel):
     senha: Optional[str] = None
     endereco: Optional[str] = None
     genero: Optional[str] = None 
-    idade: Optional[int] = None
+    data_nascimento: Optional[date] = None
 
 class ContratanteCreate(ContratanteBase):
     CPF: int

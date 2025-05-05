@@ -2,17 +2,19 @@ document.getElementById("contratanteForm").addEventListener("submit", async func
     e.preventDefault();
 
     const contratante = {
-        cpf: document.getElementById("cpf").value,
+        CPF: parseInt(document.getElementById("CPF").value),
         nome: document.getElementById("nome").value,
-        idade: parseInt(document.getElementById("idade").value),
-        genero: document.getElementById("genero").value === "true",
+        telefone: document.getElementById("telefone").value,
+        telefone_emergencia: document.getElementById("telefone_emergencia").value,
         email: document.getElementById("email").value,
-        descricao: document.getElementById("descricao").value,
-        quantidade: parseInt(document.getElementById("quantidade").value)
+        senha: document.getElementById("senha").value,
+        endereco: document.getElementById("endereco").value,
+        genero: document.getElementById("genero").value,
+        data_nascimento: document.getElementById("data_nascimento").value
     };
 
     try {
-        const response = await fetch("http://127.0.0.1:8000/contratantes/", {
+        const response = await fetch("http://127.0.0.1:8000/api/contratante/", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -21,11 +23,12 @@ document.getElementById("contratanteForm").addEventListener("submit", async func
         });
 
         if (!response.ok) {
-            throw new Error("Erro ao cadastrar contratante");
+            const errorData = await response.json();
+            throw new Error("Erro ao cadastrar: " + JSON.stringify(errorData));
         }
 
         alert("Contratante cadastrado com sucesso!");
-        listarContratantes();  // Atualiza lista
+        listarContratantes();
     } catch (error) {
         alert(error.message);
     }
@@ -36,7 +39,7 @@ async function listarContratantes() {
     lista.innerHTML = "";
 
     try {
-        const response = await fetch("http://127.0.0.1:8000/contratante/");
+        const response = await fetch("http://127.0.0.1:8000/api/contratante/");
         const data = await response.json();
 
         data.forEach(c => {
@@ -49,5 +52,5 @@ async function listarContratantes() {
     }
 }
 
-// Chamada inicial para preencher a lista
+// Carregar lista ao iniciar
 listarContratantes();

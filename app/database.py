@@ -7,7 +7,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Para usar SQLite (arquivo local)
-DATABASE_URL = os.getenv("sqlite")
+DATABASE_URL = 'sqlite:///./contratante.db'
+
 
 
 # Se depois quiser trocar para PostgreSQL, é só comentar o de cima e descomentar esse:
