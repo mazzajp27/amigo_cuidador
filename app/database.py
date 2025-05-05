@@ -8,20 +8,9 @@ from urllib.parse import quote_plus
 
 load_dotenv()
 
+# Para usar SQLite (arquivo local)
+DATABASE_URL = os.getenv("sqlite")
 
-# sqlite = os.environ.get('CONTRATANTE')
-
-# # Para usar SQLite (arquivo local)
-# DATABASE_URL = f'sqlite:///./{sqlite}.db'
-
-# Para usar as váriaveis de ambiente, coloque as informações que estão de exemplo no arquivo env_exemplo/ dentro de um arquivo .env/
-
-# Obtém as configurações do banco de dados através das variáveis de ambiente
-usuario = quote_plus(os.environ.get('USUARIO'))
-senha = quote_plus(os.environ.get('SENHA'))
-banco = os.environ.get('BANCO')
-ambiente = os.environ.get('AMBIENTE')
-porta = os.environ.get('PORTA')
 
 # Se depois quiser trocar para PostgreSQL, é só comentar o de cima e descomentar esse:
 
