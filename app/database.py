@@ -3,32 +3,28 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 import os
 from dotenv import load_dotenv
-import psycopg2
-from urllib.parse import quote_plus
 
 load_dotenv()
 
 # Para usar SQLite (arquivo local)
-DATABASE_URL = os.getenv("sqlite")
-
+# sqlite = os.environ.get('CONTRATANTE')
+# DATABASE_URL = f'sqlite:///./{sqlite}.db'
 
 # Se depois quiser trocar para PostgreSQL, é só comentar o de cima e descomentar esse:
+# Obtém as configurações do banco de dados através das variáveis de ambiente
+usuario = os.getenv('USUARIO')
+senha = os.getenv('SENHA')
+banco = os.getenv('BANCO')
+ambiente = os.getenv('AMBIENTE')
+porta = os.getenv('PORTA')
 
 DATABASE_URL = f'postgresql://{usuario}:{senha}@{ambiente}:{porta}/{banco}'
-# DATABASE_URL = 'postgresql://postgres:Apex123.@localhost:5432/contratante'
 
 
-# # # Criação do engine
+# Criação do engine
 engine = create_engine(
     DATABASE_URL,
     connect_args={"check_same_thread": False} if DATABASE_URL.startswith("sqlite") else {}
 )
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
-
-
-# DATABASE_URL = 'postgresql://postgres:Apex123.@localhost:5432/contratante'
-
-# engine = create_engine(DATABASE_URL)
-# SessionLocal = sessionmaker(autocommit=False, autoflush = False, bind=engine)
-# Base = declarative_base()

@@ -15,13 +15,13 @@ class ContratanteBase(BaseModel):
     data_nascimento: Optional[date] = None
 
 class ContratanteCreate(ContratanteBase):
-    CPF: int
+    CPF: str
 
 class ContratanteUpdate(ContratanteBase):
     pass
 
 class ContratanteResponse(ContratanteBase):
-    CPF: int
+    CPF: str
 
     class Config:
         orm_mode = True
