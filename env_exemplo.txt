@@ -15,5 +15,10 @@ PORTA=5432
 # Nome do banco de dados
 BANCO=meu_banco
 
+Parametros para utilizar o SQLite
+
+# Nome do banco de dados
+BANCO=meu_banco
+
 
 
