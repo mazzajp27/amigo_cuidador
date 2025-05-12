@@ -4,12 +4,13 @@ from app.database import Base
 class Contratante(Base):
     __tablename__ = "contratante"
 
-    CPF = Column(String(11), primary_key=True, unique=True, index=True)
+
+    id_contratante = Column(Integer, primary_key=True, autoincrement=True)
     nome = Column(String, nullable=False)
+    cpf = Column(String(14), unique=True, index=True)
+    email = Column(String, unique=True, index=True)
     telefone = Column(String)
     telefone_emergencia = Column(String)
-    email = Column(String, unique=True, index=True)
     senha = Column(String)
-    endereco = Column(String)
     genero = Column(String) 
     data_nascimento = Column(Date)
