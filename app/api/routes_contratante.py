@@ -34,3 +34,10 @@ def update_contratante(id_contratante: int, contratante: ContratanteUpdate, db: 
     if db_contratante is None:
         raise HTTPException(status_code=404, detail="Contratante não encontrado")
     return db_contratante
+
+@router.delete("/contratante/{id_contratante}", response_model=ContratanteResponse)
+def delete_contratante(id_contratante:int, db: Session = Depends(get_db)):
+    db_contratante = crud_contratante.delete_contratante(db, id_contratante)
+    if db_contratante is None:
+        raise HTTPException(status_code=404, detail="Contratante não encontrado")
+    return db_contratante

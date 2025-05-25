@@ -31,4 +31,4 @@ Base.metadata.create_all(bind=engine)
 
 
 # Incluir as rotas
-app.include_router(routes_contratante.router, prefix="/api")
+app.include_router(routes_contratante.router, prefix="/api", tags=["contratante"])
