@@ -18,3 +18,4 @@ class Contratante(Base):
     
     # Relationship with Endereco
     enderecos = relationship("Endereco", back_populates="contratante", cascade="all, delete-orphan")
+    questionario = relationship("Questionario", back_populates="contratante", cascade="all, delete-orphan")
