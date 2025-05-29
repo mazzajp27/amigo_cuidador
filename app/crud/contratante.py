@@ -11,11 +11,14 @@ def create_contratante(db: Session, contratante: ContratanteCreate):
     db.refresh(db_contratante)
     return db_contratante
 
+
 def get_contratantes(db: Session):
     return db.query(Contratante).all()
 
+
 def get_contratante(db: Session, id_contratante: int):
     return db.query(Contratante).filter(Contratante.id_contratante == id_contratante).first()
+
 
 def update_contratante(db: Session, id_contratante: int, contratante: ContratanteUpdate):
     db_contratante = db.query(Contratante).filter(Contratante.id_contratante == id_contratante).first()
@@ -25,6 +28,7 @@ def update_contratante(db: Session, id_contratante: int, contratante: Contratant
         db.commit()
         db.refresh(db_contratante)
     return db_contratante
+
 
 def delete_contratante(db: Session, id_contratante: int):
     db_contratante = db.query(Contratante).filter(Contratante.id_contratante == id_contratante).first()

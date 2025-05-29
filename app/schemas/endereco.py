@@ -23,6 +23,7 @@ class EnderecoUpdate(BaseModel):
     bairro: Optional[str] = None
     cidade: Optional[str] = None
     estado: Optional[str] = None
+    referencia: Optional[str] = None
 
 class EnderecoResponse(EnderecoBase):
     id_endereco: int

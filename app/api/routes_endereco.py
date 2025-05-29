@@ -14,13 +14,6 @@ def get_db():
     finally:
         db.close()
 
-@router.post("/endereco/", response_model=EnderecoResponse)
-def create_endereco(endereco: EnderecoCreate, db: Session = Depends(get_db)):
-    return crud_endereco.create_endereco(db, endereco)
-
-@router.get("/enderecos/{id_contratante}", response_model=List[EnderecoResponse])
-def read_enderecos(id_contratante: int, db: Session = Depends(get_db)):
-    return crud_endereco.get_enderecos(db, id_contratante)
 
 @router.get("/endereco/{id_endereco}", response_model=EnderecoResponse)
 def read_endereco(id_endereco: int, db: Session = Depends(get_db)):
@@ -29,12 +22,29 @@ def read_endereco(id_endereco: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Endereço não encontrado")
     return db_endereco
 
+
+@router.get("/enderecos", response_model=List[EnderecoResponse])
+def read_enderecos(db: Session = Depends(get_db)):
+    return crud_endereco.get_enderecos(db)
+
+
+@router.get("/enderecos/{id_contratante}", response_model=List[EnderecoResponse])
+def read_enderecos(id_contratante: int, db: Session = Depends(get_db)):
+    return crud_endereco.get_enderecos_pelo_contratante(db, id_contratante)
+
+
+@router.post("/endereco/", response_model=EnderecoResponse)
+def create_endereco(endereco: EnderecoCreate, db: Session = Depends(get_db)):
+    return crud_endereco.create_endereco(db, endereco)
+
+
 @router.put("/endereco/{id_endereco}", response_model=EnderecoResponse)
 def update_endereco(id_endereco: int, endereco: EnderecoUpdate, db: Session = Depends(get_db)):
     db_endereco = crud_endereco.update_endereco(db, id_endereco, endereco)
     if db_endereco is None:
         raise HTTPException(status_code=404, detail="Endereço não encontrado")
     return db_endereco
+
 
 @router.delete("/endereco/{id_endereco}", response_model=EnderecoResponse)
 def delete_endereco(id_endereco: int, db: Session = Depends(get_db)):

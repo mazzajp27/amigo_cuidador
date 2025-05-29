@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from typing import List
 from app.database import SessionLocal
 from app.crud import questionario as crud_questionario
-from app.schemas.questionario import Questionario, QuestionarioCreate
+from app.schemas.questionario import QuestionarioCreate, QuestionarioUpdate, QuestionarioResponse
 
 router = APIRouter()
 def get_db():
@@ -13,56 +13,37 @@ def get_db():
     finally:
         db.close()
 
-@router.get("/", response_model=List[Questionario])
-def read_questionarios(
-    db: Session = Depends(get_db),
-    skip: int = 0,
-    limit: int = 100
-):
-    questionarios = crud_questionario.get_questionarios(db, skip=skip, limit=limit)
-    return questionarios
-
-@router.post("/", response_model=Questionario)
-def create_questionario(
-    *,
-    db: Session = Depends(get_db),
-    questionario_in: QuestionarioCreate
-):
-    questionario = crud_questionario.create_questionario(db=db, questionario=questionario_in)
-    return questionario
-
-@router.get("/{questionario_id}", response_model=Questionario)
-def read_questionario(
-    *,
-    db: Session = Depends(get_db),
-    questionario_id: int
-):
-    questionario = crud_questionario.get_questionario(db=db, questionario_id=questionario_id)
-    if not questionario:
+@router.get("/questionario/{id_questionario}", response_model=QuestionarioResponse)
+def read_questionario(id_questionario: int, db: Session = Depends(get_db)):
+    db_questionario = crud_questionario.get_questionario(db, id_questionario)
+    if db_questionario is None:
         raise HTTPException(status_code=404, detail="Questionário não encontrado")
-    return questionario
+    return db_questionario
 
-@router.put("/{questionario_id}", response_model=Questionario)
-def update_questionario(
-    *,
-    db: Session = Depends(get_db),
-    questionario_id: int,
-    questionario_in: QuestionarioCreate
-):
-    questionario = crud_questionario.update_questionario(
-        db=db, questionario_id=questionario_id, questionario=questionario_in
-    )
-    if not questionario:
-        raise HTTPException(status_code=404, detail="Questionário não encontrado")
-    return questionario
+@router.get("/questionarios", response_model=List[QuestionarioResponse])
+def read_questionarios(db: Session = Depends(get_db)):
+    return crud_questionario.get_questionarios(db)
 
-@router.delete("/{questionario_id}")
-def delete_questionario(
-    *,
-    db: Session = Depends(get_db),
-    questionario_id: int
-):
-    success = crud_questionario.delete_questionario(db=db, questionario_id=questionario_id)
-    if not success:
+
+@router.get("/questionarios/{id_contratante}", response_model=List[QuestionarioResponse])
+def read_questionarios(id_contratante: int, db: Session = Depends(get_db)):
+    return crud_questionario.get_questionario_pelo_contratante(db, id_contratante) 
+
+
+@router.post("/questionario/", response_model=QuestionarioResponse)
+def create_questionario(questionario: QuestionarioCreate, db: Session = Depends(get_db)):
+    return crud_questionario.create_questionario(db, questionario)
+
+@router.put("/questionario/{id_questionario}", response_model=QuestionarioResponse)
+def update_questionario(id_questionario: int, questionario: QuestionarioUpdate, db: Session = Depends(get_db)):
+    db_questionario = crud_questionario.update_questionario(db, id_questionario, questionario)
+    if db_questionario is None:
         raise HTTPException(status_code=404, detail="Questionário não encontrado")
-    return {"message": "Questionário deletado com sucesso"} 
+    return db_questionario
+
+@router.delete("/questionario/{id_questionario}", response_model=QuestionarioResponse)
+def delete_questionario(id_questionario: int, db: Session = Depends(get_db)):
+    db_questionario = crud_questionario.delete_questionario(db, id_questionario)
+    if db_questionario is None:
+        raise HTTPException(status_code=404, detail="Questionário não encontrado")
+    return db_questionario  

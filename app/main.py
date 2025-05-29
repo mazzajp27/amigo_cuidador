@@ -2,7 +2,7 @@
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware  
-from app.api import routes_contratante, routes_auth, routes_endereco, routes_questionario
+from app.api import routes_contratante, routes_auth, routes_endereco, routes_questionario, routes_hobbies
 from app.database import Base, engine
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -24,10 +24,9 @@ app.add_middleware(
     allow_headers=["*"],  # Permite todos os headers
 )
 
+
 # Criar tabelas no banco
 Base.metadata.create_all(bind=engine)
-
-
 
 
 # Incluir as rotas
@@ -35,3 +34,4 @@ app.include_router(routes_contratante.router, prefix="/api", tags=["contratante"
 app.include_router(routes_auth.router, prefix="/api", tags=["auth"])
 app.include_router(routes_endereco.router, prefix="/api", tags=["endereco"])
 app.include_router(routes_questionario.router, prefix="/api", tags=["questionario"])
+app.include_router(routes_hobbies.router, prefix="/api", tags=["hobbies"])
