@@ -26,7 +26,7 @@ app.add_middleware(
 
 
 # Criar tabelas no banco
-Base.metadata.create_all(bind=engine)
+# Base.metadata.create_all(bind=engine)
 
 
 # Incluir as rotas

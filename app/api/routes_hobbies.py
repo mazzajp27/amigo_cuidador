@@ -14,7 +14,7 @@ def get_db():
     finally:
         db.close()
 
-@router.get("/hobbies/{id_hobbies}", response_model=HobbiesResponse)
+@router.get("/hobbie/{id_hobbies}", response_model=HobbiesResponse)
 def read_hobbies(id_hobbies: int, db: Session = Depends(get_db)):
     db_hobbies = crud_hobbies.get_hobbie(db, id_hobbies)
     if db_hobbies is None:
