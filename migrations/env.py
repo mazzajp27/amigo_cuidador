@@ -19,7 +19,7 @@ sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 from app.database import Base, DATABASE_URL
 from app.models.contratante import Contratante
 from app.models.endereco import Endereco
-from app.models.questionario import Questionario
+from amigo_cuidador.app.models.questionario_contratante import Questionario
 from app.models.hobbies import Hobbies
 
 # this is the Alembic Config object, which provides

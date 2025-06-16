@@ -2,8 +2,8 @@ from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
 from app.database import Base
 
-class Questionario(Base):
-    __tablename__ = "questionario"
+class QuestionarioContratante(Base):
+    __tablename__ = "questionario_contratante"
 
     id_questionario = Column(Integer, primary_key=True, autoincrement=True)
     possui_condicao_medica = Column(String(3), nullable=False)

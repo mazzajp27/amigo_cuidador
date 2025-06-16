@@ -2,7 +2,7 @@ from pydantic import BaseModel
 from typing import Optional
 from datetime import datetime
 
-class QuestionarioBase(BaseModel):
+class QuestionarioContratanteBase(BaseModel):
     possui_condicao_medica: str
     condicao_medica:  Optional[str] = None
     toma_medicamento: str
@@ -18,10 +18,10 @@ class QuestionarioBase(BaseModel):
     observacoes: Optional[str] = None
     id_contratante: int
 
-class QuestionarioCreate(QuestionarioBase):
+class QuestionarioContratanteCreate(QuestionarioContratanteBase):
     pass
 
-class QuestionarioUpdate(QuestionarioBase):
+class QuestionarioContratanteUpdate(QuestionarioContratanteBase):
     possui_condicao_medica: Optional[str] = None
     condicao_medica: Optional[str] = None
     toma_medicamento: Optional[str] = None
@@ -37,7 +37,7 @@ class QuestionarioUpdate(QuestionarioBase):
     observacoes: Optional[str] = None
     
 
-class QuestionarioResponse(QuestionarioBase):
+class QuestionarioContratanteResponse(QuestionarioContratanteBase):
     id_questionario: int
 
     class Config:
