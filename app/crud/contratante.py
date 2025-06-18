@@ -4,8 +4,11 @@ from sqlalchemy.orm import Session
 from app.models.contratante import Contratante
 from app.schemas.contratante import ContratanteCreate, ContratanteUpdate
 
-def create_contratante(db: Session, contratante: ContratanteCreate):
-    db_contratante = Contratante(**contratante.dict())
+def create_contratante(db: Session, contratante: ContratanteCreate, usuario_id: int = None):
+    data = contratante.dict()
+    if usuario_id is not None:
+        data['usuario_id'] = usuario_id
+    db_contratante = Contratante(**data)
     db.add(db_contratante)
     db.commit()
     db.refresh(db_contratante)

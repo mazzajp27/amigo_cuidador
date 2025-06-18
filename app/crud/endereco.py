@@ -11,12 +11,15 @@ def get_enderecos(db: Session):
     return db.query(Endereco).all()
 
 
-def get_enderecos_pelo_contratante(db: Session, id_contratante: int):
-    return db.query(Endereco).filter(Endereco.id_contratante == id_contratante).all()
+def get_enderecos_pelo_usuario(db: Session, usuario_id: int):
+    return db.query(Endereco).filter(Endereco.usuario_id == usuario_id).all()
 
 
-def create_endereco(db: Session, endereco: EnderecoCreate):
-    db_endereco = Endereco(**endereco.dict())
+def create_endereco(db: Session, endereco: EnderecoCreate, usuario_id: int = None):
+    data = endereco.dict()
+    if usuario_id is not None:
+        data['usuario_id'] = usuario_id
+    db_endereco = Endereco(**data)
     db.add(db_endereco)
     db.commit()
     db.refresh(db_endereco)

@@ -4,6 +4,8 @@ from app.database import SessionLocal
 from app.crud import contratante as crud_contratante
 from app.schemas.contratante import ContratanteResponse
 from pydantic import BaseModel
+from app.crud import usuario as crud_usuario
+from app.schemas.usuario import UsuarioCreate, UsuarioResponse
 
 router = APIRouter()
 
@@ -33,3 +35,12 @@ def login(login_data: LoginRequest, db: Session = Depends(get_db)):
         raise HTTPException(status_code=401, detail="Senha incorreta")
     
     return user 
+
+@router.post("/usuario/", response_model=UsuarioResponse)
+def create_usuario(usuario: UsuarioCreate, db: Session = Depends(get_db)):
+    # Verifica se já existe usuário com o mesmo email ou CPF
+    if crud_usuario.get_usuario_by_email(db, usuario.email):
+        raise HTTPException(status_code=400, detail="Email já registrado")
+    if crud_usuario.get_usuario_by_cpf(db, usuario.cpf):
+        raise HTTPException(status_code=400, detail="CPF já registrado")
+    return crud_usuario.create_usuario(db, usuario) 

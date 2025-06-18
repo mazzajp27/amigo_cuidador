@@ -2,8 +2,11 @@ from sqlalchemy.orm import Session
 from app.models.cuidador import Cuidador
 from app.schemas.cuidador import CuidadorCreate, CuidadorUpdate
 
-def create_cuidador(db: Session, cuidador: CuidadorCreate):
-    db_cuidador = Cuidador(**cuidador.dict())
+def create_cuidador(db: Session, cuidador: CuidadorCreate, usuario_id: int = None):
+    data = cuidador.dict()
+    if usuario_id is not None:
+        data['usuario_id'] = usuario_id
+    db_cuidador = Cuidador(**data)
     db.add(db_cuidador)
     db.commit()
     db.refresh(db_cuidador)

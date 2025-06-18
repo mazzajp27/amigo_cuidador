@@ -1,8 +1,9 @@
 from pydantic import BaseModel, EmailStr
 from typing import Optional
 from datetime import date
+from app.models.usuario import TipoUsuario
 
-class CuidadorBase(BaseModel):
+class UsuarioBase(BaseModel):
     nome: str
     cpf: str
     email: EmailStr
@@ -11,12 +12,12 @@ class CuidadorBase(BaseModel):
     senha: str
     genero: Optional[str] = None
     data_nascimento: Optional[date] = None
-    
+    tipo_usuario: TipoUsuario
 
-class CuidadorCreate(CuidadorBase):
+class UsuarioCreate(UsuarioBase):
     pass
 
-class CuidadorUpdate(CuidadorBase):
+class UsuarioUpdate(BaseModel):
     nome: Optional[str] = None
     cpf: Optional[str] = None
     email: Optional[EmailStr] = None
@@ -25,11 +26,9 @@ class CuidadorUpdate(CuidadorBase):
     senha: Optional[str] = None
     genero: Optional[str] = None
     data_nascimento: Optional[date] = None
-    
 
-class CuidadorResponse(CuidadorBase):
-    id_cuidador: int
-    usuario_id: int
+class UsuarioResponse(UsuarioBase):
+    id_usuario: int
 
     class Config:
-        orm_mode = True 
+        orm_mode = True

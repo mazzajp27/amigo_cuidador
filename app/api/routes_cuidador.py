@@ -2,7 +2,11 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from app.database import SessionLocal
 from app.crud import cuidador as crud_cuidador
+from app.crud import usuario as crud_usuario
+from app.crud import endereco as crud_endereco
 from app.schemas.cuidador import CuidadorCreate, CuidadorUpdate, CuidadorResponse
+from app.schemas.usuario import UsuarioCreate
+from app.schemas.endereco import EnderecoCreate
 
 router = APIRouter()
 
@@ -51,4 +55,23 @@ def delete_cuidador(id_cuidador: int, db: Session = Depends(get_db)):
     db_cuidador = crud_cuidador.delete_cuidador(db, id_cuidador)
     if db_cuidador is None:
         raise HTTPException(status_code=404, detail="Cuidador não encontrado")
-    return db_cuidador 
+    return db_cuidador
+
+@router.post("/cadastro/cuidador_completo/")
+def cadastro_cuidador_completo(
+    usuario: UsuarioCreate,
+    cuidador: CuidadorCreate,
+    endereco: EnderecoCreate,
+    db: Session = Depends(get_db)
+):
+    # Cria usuário
+    db_usuario = crud_usuario.create_usuario(db, usuario)
+    # Cria cuidador vinculado ao usuário
+    db_cuidador = crud_cuidador.create_cuidador(db, cuidador, usuario_id=db_usuario.id_usuario)
+    # Cria endereço vinculado ao usuário
+    db_endereco = crud_endereco.create_endereco(db, endereco, usuario_id=db_usuario.id_usuario)
+    return {
+        "usuario": db_usuario,
+        "cuidador": db_cuidador,
+        "endereco": db_endereco
+    } 

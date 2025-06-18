@@ -37,3 +37,5 @@ app.include_router(routes_questionario_contratante.router, prefix="/api", tags=[
 app.include_router(routes_hobbies.router, prefix="/api", tags=["hobbies"])
 app.include_router(routes_cuidador.router, prefix="/api", tags=["cuidador"])
 app.include_router(routes_questionario_cuidador.router, prefix="/api", tags=["questionario-cuidador"])
+# app.include_router(routes_usuario.router, prefix="/api", tags=["usuario"])
+

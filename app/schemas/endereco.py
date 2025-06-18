@@ -10,7 +10,7 @@ class EnderecoBase(BaseModel):
     numero: str
     complemento: str
     referencia: Optional[str] = None
-    id_contratante: int
+    usuario_id: int
 
 class EnderecoCreate(EnderecoBase):
     pass

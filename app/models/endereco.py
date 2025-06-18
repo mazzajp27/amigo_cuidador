@@ -15,6 +15,6 @@ class Endereco(Base):
     estado = Column(String(2), nullable=False)
     referencia = Column(String)
 
-    # Foreign key relationship with Contratante
-    id_contratante = Column(Integer, ForeignKey('contratante.id_contratante'), nullable=False)
-    contratante = relationship("Contratante", back_populates="enderecos") 
+    # Foreign key relationship with Usuario
+    usuario_id = Column(Integer, ForeignKey('usuario.id_usuario'), nullable=False)
+    usuario = relationship("Usuario", back_populates="enderecos") 

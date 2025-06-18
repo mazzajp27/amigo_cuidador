@@ -1,23 +1,16 @@
-# app/schemas/contratante.py
-
-from pydantic import BaseModel, EmailStr
 from typing import Optional
+from app.schemas.usuario import UsuarioBase
+from pydantic import EmailStr
 from datetime import date
+from pydantic import BaseModel
 
-class ContratanteBase(BaseModel):
-    nome: str
-    cpf: str
-    email: EmailStr
-    telefone: str
-    telefone_emergencia: Optional[str] = None
-    senha: str
-    genero: Optional[str] = None 
-    data_nascimento: Optional[date] = None
+class ContratanteBase(UsuarioBase):
+    pass
 
 class ContratanteCreate(ContratanteBase):
     pass
 
-class ContratanteUpdate(ContratanteBase):
+class ContratanteUpdate(BaseModel):
     nome: Optional[str] = None
     cpf: Optional[str] = None
     email: Optional[EmailStr] = None
@@ -29,7 +22,7 @@ class ContratanteUpdate(ContratanteBase):
 
 class ContratanteResponse(ContratanteBase):
     id_contratante: int
+    usuario_id: int
 
     class Config:
         orm_mode = True
-
