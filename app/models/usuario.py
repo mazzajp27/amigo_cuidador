@@ -22,7 +22,7 @@ class Usuario(Base):
     tipo_usuario = Column(Enum(TipoUsuario), nullable=False)
 
     # Relationships
-    contratante = relationship("Contratante", back_populates="usuario", uselist=False)
-    cuidador = relationship("Cuidador", back_populates="usuario", uselist=False)
-    enderecos = relationship("Endereco", back_populates="usuario")
-    hobbies = relationship("Hobbies", back_populates="usuario")
+    contratante = relationship("Contratante", back_populates="usuario", uselist=False, cascade="all, delete-orphan")
+    cuidador = relationship("Cuidador", back_populates="usuario", uselist=False, cascade="all, delete-orphan")
+    enderecos = relationship("Endereco", back_populates="usuario", cascade="all, delete-orphan")
+    hobbies = relationship("Hobbies", back_populates="usuario", cascade="all, delete-orphan")

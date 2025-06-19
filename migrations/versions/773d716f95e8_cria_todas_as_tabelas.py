@@ -36,28 +36,19 @@ def upgrade() -> None:
     )
     op.create_index(op.f('ix_usuario_cpf'), 'usuario', ['cpf'], unique=True)
     op.create_index(op.f('ix_usuario_email'), 'usuario', ['email'], unique=True)
+    
     op.create_table('contratante',
     sa.Column('id_contratante', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['id_contratante'], ['usuario.id_usuario'], ),
     sa.PrimaryKeyConstraint('id_contratante')
     )
+    
     op.create_table('cuidador',
-    sa.Column('id_cuidador', sa.Integer(), autoincrement=True, nullable=False),
-    sa.Column('usuario_id', sa.Integer(), nullable=False),
-    sa.Column('nome', sa.String(), nullable=False),
-    sa.Column('cpf', sa.String(length=14), nullable=True),
-    sa.Column('email', sa.String(), nullable=True),
-    sa.Column('telefone', sa.String(), nullable=True),
-    sa.Column('telefone_emergencia', sa.String(), nullable=True),
-    sa.Column('senha', sa.String(), nullable=True),
-    sa.Column('genero', sa.String(), nullable=True),
-    sa.Column('data_nascimento', sa.Date(), nullable=True),
-    sa.ForeignKeyConstraint(['usuario_id'], ['usuario.id_usuario'], ),
-    sa.PrimaryKeyConstraint('id_cuidador'),
-    sa.UniqueConstraint('usuario_id')
+    sa.Column('id_cuidador', sa.Integer(), nullable=False),
+    sa.ForeignKeyConstraint(['id_cuidador'], ['usuario.id_usuario'], ),
+    sa.PrimaryKeyConstraint('id_cuidador')
     )
-    op.create_index(op.f('ix_cuidador_cpf'), 'cuidador', ['cpf'], unique=True)
-    op.create_index(op.f('ix_cuidador_email'), 'cuidador', ['email'], unique=True)
+    
     op.create_table('endereco',
     sa.Column('id_endereco', sa.Integer(), autoincrement=True, nullable=False),
     sa.Column('cep', sa.String(length=8), nullable=False),
@@ -72,6 +63,7 @@ def upgrade() -> None:
     sa.ForeignKeyConstraint(['usuario_id'], ['usuario.id_usuario'], ),
     sa.PrimaryKeyConstraint('id_endereco')
     )
+    
     op.create_table('hobbies',
     sa.Column('id_hobbie', sa.Integer(), autoincrement=True, nullable=False),
     sa.Column('atividades_gosta', sa.String(), nullable=False),
@@ -94,6 +86,7 @@ def upgrade() -> None:
     sa.ForeignKeyConstraint(['usuario_id'], ['usuario.id_usuario'], ),
     sa.PrimaryKeyConstraint('id_hobbie')
     )
+    
     op.create_table('questionario_contratante',
     sa.Column('id_questionario', sa.Integer(), autoincrement=True, nullable=False),
     sa.Column('possui_condicao_medica', sa.String(length=3), nullable=False),
@@ -113,6 +106,7 @@ def upgrade() -> None:
     sa.ForeignKeyConstraint(['id_contratante'], ['contratante.id_contratante'], ),
     sa.PrimaryKeyConstraint('id_questionario')
     )
+    
     op.create_table('questionario_cuidador',
     sa.Column('id_questionario_cuidador', sa.Integer(), autoincrement=True, nullable=False),
     sa.Column('cursos_realizados', sa.String(), nullable=True),
@@ -141,8 +135,6 @@ def downgrade() -> None:
     op.drop_table('questionario_contratante')
     op.drop_table('hobbies')
     op.drop_table('endereco')
-    op.drop_index(op.f('ix_cuidador_email'), table_name='cuidador')
-    op.drop_index(op.f('ix_cuidador_cpf'), table_name='cuidador')
     op.drop_table('cuidador')
     op.drop_table('contratante')
     op.drop_index(op.f('ix_usuario_email'), table_name='usuario')
