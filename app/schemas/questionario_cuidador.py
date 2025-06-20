@@ -3,39 +3,36 @@ from typing import Optional
 from datetime import datetime
 
 class QuestionarioCuidadorBase(BaseModel):
-    possui_condicao_medica: str
-    condicao_medica:  Optional[str] = None
-    toma_medicamento: str
-    medicamento:  Optional[str] = None
-    realiza_atividades_diarias: str
-    atividades_diarias_ajuda:  Optional[str] = None
-    familia_apoio: str
-    frequencia_visitas:  Optional[str] = None
-    principais_qualidades_preferencias: str
-    espera_cuidador: str
-    possui_deficiencias: str
-    deficiencias:  Optional[str] = None
-    observacoes: Optional[str] = None
+    cursos_realizados: str
+    instituicao_ensino: str
+    area_formacao: str
+    tempo_experiencia: str
+    principais_responsabilidades: str
+    possui_certificacao: str
+    certificacao: str
+    qualidades_preferencias: str
+    horario_disponivel: str
+    disponibilidade_plantao: str
+    qualidades_cuidador: str
+    referencia_cuidador: str
     id_cuidador: int
 
 class QuestionarioCuidadorCreate(QuestionarioCuidadorBase):
     pass
 
 class QuestionarioCuidadorUpdate(QuestionarioCuidadorBase):
-    possui_condicao_medica: Optional[str] = None
-    condicao_medica: Optional[str] = None
-    toma_medicamento: Optional[str] = None
-    medicamento: Optional[str] = None
-    realiza_atividades_diarias: Optional[str] = None
-    atividades_diarias_ajuda: Optional[str] = None
-    familia_apoio: Optional[str] = None
-    frequencia_visitas: Optional[str] = None
-    principais_qualidades_preferencias: Optional[str] = None
-    espera_cuidador: Optional[str] = None
-    possui_deficiencias: Optional[str] = None
-    deficiencias: Optional[str] = None
-    observacoes: Optional[str] = None
-    
+    cursos_realizados: Optional[str] = None
+    instituicao_ensino: Optional[str] = None
+    area_formacao: Optional[str] = None
+    tempo_experiencia: Optional[str] = None
+    principais_responsabilidades: Optional[str] = None
+    possui_certificacao: Optional[str] = None
+    certificacao: Optional[str] = None
+    qualidades_preferencias: Optional[str] = None
+    horario_disponivel: Optional[str] = None
+    disponibilidade_plantao: Optional[str] = None
+    qualidades_cuidador: Optional[str] = None
+    referencia_cuidador: Optional[str] = None
 
 class QuestionarioCuidadorResponse(QuestionarioCuidadorBase):
     id_questionario: int

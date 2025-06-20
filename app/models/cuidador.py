@@ -10,7 +10,6 @@ class Cuidador(Base):
     cpf = Column(String(14), unique=True, index=True)
     email = Column(String, unique=True, index=True)
     telefone = Column(String)
-    telefone_emergencia = Column(String)
     senha = Column(String)
     genero = Column(String) 
     data_nascimento = Column(Date)

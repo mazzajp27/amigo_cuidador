@@ -5,23 +5,15 @@ from app.database import Base
 class HobbiesCuidador(Base):
     __tablename__ = "hobbies_cuidador"
     
-    id_hobbie = Column(Integer, primary_key=True, autoincrement=True)
+    id_hobbies_cuidador = Column(Integer, primary_key=True, autoincrement=True)
     atividades_gosta = Column(String, nullable=False)
-    pratica_esporte = Column(String(3), nullable=False)
-    esporte_praticado = Column(String, nullable=False)
     atividades_manuais = Column(String(3), nullable=False)
-    atividades_manuais_praticadas = Column(String, nullable=False)
-    interesse_aprender = Column(String(3), nullable=False)
-    interesse_aprender_especifico = Column(String, nullable=False)
     gerenero_musical = Column(String, nullable=False)
     filmes_tv = Column(String, nullable=False)
     participa_eventos = Column(String(3), nullable=False)
-    eventos = Column(String, nullable=False)
-    ensina = Column(String(3), nullable=False)
-    ensinamentos_passados = Column(String, nullable=False)
+    gosta_ensinar = Column(String(3), nullable=False)
     atividades_tecnologicas = Column(String(3), nullable=False)
-    atividades_tecnologicas_praticadas = Column(String, nullable=False)
-    outros_hobbies = Column(String, nullable=False)
+    comentarios = Column(String, nullable=False)
     
     id_cuidador = Column(Integer, ForeignKey('cuidador.id_cuidador'), nullable=False)
     cuidador = relationship("Cuidador", back_populates="hobbies")

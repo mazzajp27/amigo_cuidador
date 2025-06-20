@@ -5,20 +5,20 @@ from app.database import Base
 class QuestionarioCuidador(Base):
     __tablename__ = "questionario_cuidador"
 
-    id_questionario = Column(Integer, primary_key=True, autoincrement=True)
-    possui_condicao_medica = Column(String(3), nullable=False)
-    condicao_medica = Column(String, nullable=False)
-    toma_medicamento = Column(String(3), nullable=False)
-    medicamento = Column(String, nullable=False)
-    realiza_atividades_diarias = Column(String(3), nullable=False)
-    atividades_diarias_ajuda = Column(String, nullable=False)
-    familia_apoio = Column(String(3), nullable=False)
-    frequencia_visitas = Column(String, nullable=False)
-    principais_qualidades_preferencias = Column(String)
-    espera_cuidador = Column(String, nullable=False)
-    possui_deficiencias = Column(String(3), nullable=False)
-    deficiencias = Column(String, nullable=False)
-    observacoes = Column(String)
+    id_questionario_cuidador = Column(Integer, primary_key=True, autoincrement=True)
+    cursos_realizados = Column(String, nullable=False)
+    instituicao_ensino = Column(String, nullable=False)
+    area_formacao = Column(String, nullable=False)
+    tempo_experiencia = Column(String, nullable=False)
+    principais_responsabilidades = Column(String, nullable=False)
+    possui_certificacao = Column(String(3), nullable=False)
+    certificacao = Column(String, nullable=False)
+    qualidades_preferencias = Column(String, nullable=False)
+    horario_disponivel = Column(String, nullable=False)
+    disponibilidade_plantao = Column(String, nullable=False)
+    qualidades_cuidador = Column(String, nullable=False)
+    referencia_cuidador = Column(String, nullable=False)
+    
     
 
     # Foreign key relationship with Contratante

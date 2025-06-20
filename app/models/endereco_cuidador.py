@@ -5,7 +5,7 @@ from app.database import Base
 class EnderecoCuidador(Base):
     __tablename__ = "endereco_cuidador"
 
-    id_endereco = Column(Integer, primary_key=True, autoincrement=True)
+    id_endereco_cuidador = Column(Integer, primary_key=True, autoincrement=True)
     cep = Column(String(8), nullable=False)
     endereco = Column(String, nullable=False)
     numero = Column(String, nullable=False)
