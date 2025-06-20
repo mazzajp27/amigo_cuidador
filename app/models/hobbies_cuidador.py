@@ -2,8 +2,8 @@ from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
 from app.database import Base
 
-class Hobbies(Base):
-    __tablename__ = "hobbies"
+class HobbiesCuidador(Base):
+    __tablename__ = "hobbies_cuidador"
     
     id_hobbie = Column(Integer, primary_key=True, autoincrement=True)
     atividades_gosta = Column(String, nullable=False)
@@ -23,8 +23,7 @@ class Hobbies(Base):
     atividades_tecnologicas_praticadas = Column(String, nullable=False)
     outros_hobbies = Column(String, nullable=False)
     
-    
-    id_contratante = Column(Integer, ForeignKey('contratante.id_contratante'), nullable=False)
-    contratante = relationship("Contratante", back_populates="hobbies")
+    id_cuidador = Column(Integer, ForeignKey('cuidador.id_cuidador'), nullable=False)
+    cuidador = relationship("Cuidador", back_populates="hobbies")
 
     

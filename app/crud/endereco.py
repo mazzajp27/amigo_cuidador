@@ -15,6 +15,7 @@ def get_enderecos_pelo_contratante(db: Session, id_contratante: int):
     return db.query(Endereco).filter(Endereco.id_contratante == id_contratante).all()
 
 
+
 def create_endereco(db: Session, endereco: EnderecoCreate):
     db_endereco = Endereco(**endereco.dict())
     db.add(db_endereco)

@@ -2,7 +2,7 @@
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware  
-from app.api import routes_contratante, routes_auth, routes_endereco, routes_questionario, routes_hobbies
+from app.api import routes_contratante, routes_auth, routes_endereco, routes_questionario, routes_hobbies, routes_cuidador, routes_questionario_cuidador, routes_endereco_cuidador, routes_hobbies_cuidador
 from app.database import Base, engine
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -35,3 +35,9 @@ app.include_router(routes_auth.router, prefix="/api", tags=["auth"])
 app.include_router(routes_endereco.router, prefix="/api", tags=["endereco"])
 app.include_router(routes_questionario.router, prefix="/api", tags=["questionario"])
 app.include_router(routes_hobbies.router, prefix="/api", tags=["hobbies"])
+app.include_router(routes_cuidador.router, prefix="/api", tags=["cuidador"])
+app.include_router(routes_questionario_cuidador.router, prefix="/api", tags=["questionario_cuidador"])
+app.include_router(routes_endereco_cuidador.router, prefix="/api", tags=["endereco_cuidador"])
+app.include_router(routes_hobbies_cuidador.router, prefix="/api", tags=["hobbies_cuidador"])
+
+

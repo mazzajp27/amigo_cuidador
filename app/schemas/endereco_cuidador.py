@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from typing import Optional
 
-class EnderecoBase(BaseModel):
+class EnderecoCuidadorBase(BaseModel):
     estado: str
     cidade: str
     endereco: str
@@ -10,13 +10,13 @@ class EnderecoBase(BaseModel):
     numero: str
     complemento: str
     referencia: Optional[str] = None
-    id_contratante: int
+    id_cuidador: int
 
 
-class EnderecoCreate(EnderecoBase):
+class EnderecoCuidadorCreate(EnderecoCuidadorBase):
     pass
 
-class EnderecoUpdate(BaseModel):
+class EnderecoCuidadorUpdate(BaseModel):
     cep: Optional[str] = None
     endereco: Optional[str] = None
     numero: Optional[str] = None
@@ -26,7 +26,7 @@ class EnderecoUpdate(BaseModel):
     estado: Optional[str] = None
     referencia: Optional[str] = None
 
-class EnderecoResponse(EnderecoBase):
+class EnderecoCuidadorResponse(EnderecoCuidadorBase):
     id_endereco: int
 
     class Config:
