@@ -28,7 +28,7 @@ class HobbiesCuidadorUpdate(HobbiesCuidadorBase):
     
 
 class HobbiesCuidadorResponse(HobbiesCuidadorBase):
-    id_hobbie: int
+    id_hobbies_cuidador: int
     
     class Config:
         from_attributes = True

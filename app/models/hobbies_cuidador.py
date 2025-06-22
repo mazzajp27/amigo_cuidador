@@ -19,3 +19,5 @@ class HobbiesCuidador(Base):
     cuidador = relationship("Cuidador", back_populates="hobbies")
 
     
+
+    

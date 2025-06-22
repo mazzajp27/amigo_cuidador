@@ -1,7 +1,13 @@
-fastapi
-uvicorn
-sqlalchemy
-pydantic
-python-dotenv
-pydantic[email]
-alembic
+fastapi>=0.68.0
+uvicorn>=0.15.0
+sqlalchemy>=1.4.0
+pydantic>=2.0.0
+python-dotenv>=0.19.0
+pydantic[email]>=2.0.0
+alembic>=1.7.0
+python-jose[cryptography]>=3.3.0  # Para JWT
+passlib[bcrypt]>=1.7.4  # Para hash de senhas
+python-multipart>=0.0.5  # Para upload de arquivos
+email-validator>=1.1.3  # Para validação de email
+requests>=2.26.0  # Para chamadas HTTP externas
+SQLAlchemy-Utils>=0.37.8  # Para tipos adicionais do SQLAlchemy

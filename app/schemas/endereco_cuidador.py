@@ -8,7 +8,7 @@ class EnderecoCuidadorBase(BaseModel):
     bairro: str
     cep: str
     numero: str
-    complemento: str
+    complemento: Optional[str]
     referencia: Optional[str] = None
     id_cuidador: int
 
@@ -27,7 +27,7 @@ class EnderecoCuidadorUpdate(BaseModel):
     referencia: Optional[str] = None
 
 class EnderecoCuidadorResponse(EnderecoCuidadorBase):
-    id_endereco: int
+    id_endereco_cuidador: int
 
     class Config:
         orm_mode = True 

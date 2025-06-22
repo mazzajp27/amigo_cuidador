@@ -35,7 +35,7 @@ class QuestionarioCuidadorUpdate(QuestionarioCuidadorBase):
     referencia_cuidador: Optional[str] = None
 
 class QuestionarioCuidadorResponse(QuestionarioCuidadorBase):
-    id_questionario: int
+    id_questionario_cuidador: int
 
     class Config:
         from_attributes = True

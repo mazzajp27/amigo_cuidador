@@ -29,13 +29,25 @@ def read_enderecos(db: Session = Depends(get_db)):
 
 
 @router.get("/enderecos_cuidador/{id_cuidador}", response_model=List[EnderecoCuidadorResponse])
-def read_enderecos(id_cuidador: int, db: Session = Depends(get_db)):
+def read_enderecos_by_cuidador(id_cuidador: int, db: Session = Depends(get_db)):
     return crud_endereco_cuidador.get_enderecos_pelo_cuidador(db, id_cuidador)
 
 
-@router.post("/endereco_cuidador/", response_model=EnderecoCuidadorResponse)
+@router.post("/endereco_cuidador", response_model=EnderecoCuidadorResponse)
 def create_endereco(endereco: EnderecoCuidadorCreate, db: Session = Depends(get_db)):
-    return crud_endereco_cuidador.create_endereco(db, endereco)
+    db_endereco = crud_endereco_cuidador.create_endereco(db, endereco)
+    return {
+        "id_endereco_cuidador": db_endereco.id_endereco_cuidador,
+        "estado": db_endereco.estado,
+        "cidade": db_endereco.cidade,
+        "endereco": db_endereco.endereco,
+        "bairro": db_endereco.bairro,
+        "cep": db_endereco.cep,
+        "numero": db_endereco.numero,
+        "complemento": db_endereco.complemento,
+        "referencia": db_endereco.referencia,
+        "id_cuidador": db_endereco.id_cuidador
+    }
 
 
 @router.put("/endereco_cuidador/{id_endereco_cuidador}", response_model=EnderecoCuidadorResponse)
