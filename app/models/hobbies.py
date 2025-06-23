@@ -24,6 +24,7 @@ class Hobbies(Base):
     outros_hobbies = Column(String, nullable=False)
     
     
-    usuario_id = Column(Integer, ForeignKey('usuario.id_usuario'), nullable=False)
-    usuario = relationship("Usuario", back_populates="hobbies")
+    id_contratante = Column(Integer, ForeignKey('contratante.id_contratante'), nullable=False)
+    contratante = relationship("Contratante", back_populates="hobbies")
+
     

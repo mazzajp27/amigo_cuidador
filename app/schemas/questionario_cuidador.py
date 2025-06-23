@@ -1,19 +1,20 @@
 from pydantic import BaseModel
 from typing import Optional
+from datetime import datetime
 
 class QuestionarioCuidadorBase(BaseModel):
-    cursos_realizados: Optional[str] = None
-    instituicao_ensino: Optional[str] = None
-    area_formacao: Optional[str] = None
-    tempo_experiencia: Optional[str] = None
-    responsabilidade_cuidado: Optional[str] = None
+    cursos_realizados: str
+    instituicao_ensino: str
+    area_formacao: str
+    tempo_experiencia: str
+    principais_responsabilidades: str
     possui_certificacao: str
-    certificacoes: Optional[str] = None
-    qualidades_preferencias: Optional[str] = None
-    horario_disponivel: Optional[str] = None
+    certificacao: str
+    qualidades_preferencias: str
+    horario_disponivel: str
     disponibilidade_plantao: str
-    qualificacoes_cuidador: Optional[str] = None
-    referencia_cuidador: Optional[str] = None
+    qualidades_cuidador: str
+    referencia_cuidador: str
     id_cuidador: int
 
 class QuestionarioCuidadorCreate(QuestionarioCuidadorBase):
@@ -24,18 +25,17 @@ class QuestionarioCuidadorUpdate(QuestionarioCuidadorBase):
     instituicao_ensino: Optional[str] = None
     area_formacao: Optional[str] = None
     tempo_experiencia: Optional[str] = None
-    responsabilidade_cuidado: Optional[str] = None
+    principais_responsabilidades: Optional[str] = None
     possui_certificacao: Optional[str] = None
-    certificacoes: Optional[str] = None
+    certificacao: Optional[str] = None
     qualidades_preferencias: Optional[str] = None
     horario_disponivel: Optional[str] = None
     disponibilidade_plantao: Optional[str] = None
-    qualificacoes_cuidador: Optional[str] = None
+    qualidades_cuidador: Optional[str] = None
     referencia_cuidador: Optional[str] = None
-    id_cuidador: Optional[int] = None
 
 class QuestionarioCuidadorResponse(QuestionarioCuidadorBase):
     id_questionario_cuidador: int
 
     class Config:
-        orm_mode = True 
+        from_attributes = True

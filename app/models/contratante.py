@@ -1,13 +1,22 @@
 from sqlalchemy import Column, Integer, String, Float, Numeric, Boolean, Date
 from sqlalchemy.orm import relationship
 from app.database import Base
-from sqlalchemy import ForeignKey
 
 class Contratante(Base):
     __tablename__ = "contratante"
 
+
     id_contratante = Column(Integer, primary_key=True, autoincrement=True)
-    usuario_id = Column(Integer, ForeignKey('usuario.id_usuario'), nullable=False, unique=True)
-    usuario = relationship("Usuario", back_populates="contratante")
-    questionario = relationship("QuestionarioContratante", back_populates="contratante", cascade="all, delete-orphan")
+    nome = Column(String, nullable=False)
+    cpf = Column(String(14), unique=True, index=True)
+    email = Column(String, unique=True, index=True)
+    telefone = Column(String)
+    telefone_emergencia = Column(String)
+    senha = Column(String)
+    genero = Column(String) 
+    data_nascimento = Column(Date)
     
+    # Relationship with Endereco
+    enderecos = relationship("Endereco", back_populates="contratante", cascade="all, delete-orphan")
+    questionario = relationship("Questionario", back_populates="contratante", cascade="all, delete-orphan")
+    hobbies = relationship("Hobbies", back_populates="contratante", cascade="all, delete-orphan")

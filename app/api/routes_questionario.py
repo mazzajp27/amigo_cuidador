@@ -2,8 +2,8 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from typing import List
 from app.database import SessionLocal
-from app.crud import questionario_contratante as crud_questionario
-from app.schemas.questionario_contratante import QuestionarioContratanteCreate, QuestionarioContratanteUpdate, QuestionarioContratanteResponse
+from amigo_cuidador.app.crud import questionario as crud_questionario
+from amigo_cuidador.app.schemas.questionario import QuestionarioContratanteCreate, QuestionarioContratanteUpdate, QuestionarioContratanteResponse
 
 router = APIRouter()
 def get_db():

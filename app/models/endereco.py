@@ -9,12 +9,12 @@ class Endereco(Base):
     cep = Column(String(8), nullable=False)
     endereco = Column(String, nullable=False)
     numero = Column(String, nullable=False)
-    complemento = Column(String)
+    complemento = Column(String, nullable=True)
     bairro = Column(String, nullable=False)
     cidade = Column(String, nullable=False)
     estado = Column(String(2), nullable=False)
-    referencia = Column(String)
+    referencia = Column(String, nullable=True)
 
-    # Foreign key relationship with Usuario
-    usuario_id = Column(Integer, ForeignKey('usuario.id_usuario'), nullable=False)
-    usuario = relationship("Usuario", back_populates="enderecos") 
+    # Foreign key relationship with Contratante
+    id_contratante = Column(Integer, ForeignKey('contratante.id_contratante'), nullable=False)
+    contratante = relationship("Contratante", back_populates="enderecos") 

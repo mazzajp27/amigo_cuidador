@@ -36,4 +36,3 @@ def delete_hobbie(db: Session, id_hobbies: int):
     db.delete(db_hobbie)
     db.commit()
     return db_hobbie 
-
