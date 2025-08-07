@@ -20,9 +20,8 @@ class QuestionarioCuidador(Base):
     qualidades_cuidador = Column(String, nullable=False)
     referencia_cuidador = Column(String, nullable=False)
     
-    
 
-    # Foreign key relationship with Contratante
-    id_cuidador = Column(Integer, ForeignKey('cuidador.id_cuidador'), nullable=False)
+    # Foreign key relationship with Cuidador
+    id_cuidador = Column(Integer, ForeignKey('cuidador.id'), nullable=False)
     cuidador = relationship("Cuidador", back_populates="questionario") 
     

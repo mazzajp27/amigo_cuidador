@@ -1,7 +1,7 @@
 from pydantic import BaseModel, EmailStr
 from typing import Optional
 from datetime import date
-from app.models.usuario import TipoUsuario
+
 
 class UsuarioBase(BaseModel):
     nome: str
@@ -10,12 +10,20 @@ class UsuarioBase(BaseModel):
     telefone: str
     telefone_emergencia: Optional[str] = None
     senha: str
-    genero: Optional[str] = None
-    data_nascimento: Optional[date] = None
-    tipo_usuario: TipoUsuario
+    genero: str
+    data_nascimento: date
+    
 
 class UsuarioCreate(UsuarioBase):
-    pass
+    nome: str
+    cpf: str
+    email: EmailStr
+    telefone: str
+    telefone_emergencia: Optional[str] = None
+    senha: str
+    genero: Optional[str] = None
+    data_nascimento: Optional[date] = None
+    tipo: str
 
 class UsuarioUpdate(BaseModel):
     nome: Optional[str] = None
@@ -26,9 +34,13 @@ class UsuarioUpdate(BaseModel):
     senha: Optional[str] = None
     genero: Optional[str] = None
     data_nascimento: Optional[date] = None
+    tipo: Optional[str] = None
 
 class UsuarioResponse(UsuarioBase):
-    id_usuario: int
+    id: int
+    data_cadastro: date
+    tipo: str
+    status: str
 
     class Config:
-        orm_mode = True
+        from_attributes = True

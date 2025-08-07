@@ -28,9 +28,14 @@ def read_enderecos(db: Session = Depends(get_db)):
     return crud_endereco.get_enderecos(db)
 
 
-@router.get("/enderecos/{id_contratante}", response_model=List[EnderecoResponse])
-def read_enderecos(id_contratante: int, db: Session = Depends(get_db)):
+@router.get("/enderecos/contratante/{id_contratante}", response_model=List[EnderecoResponse])
+def read_enderecos_contratante(id_contratante: int, db: Session = Depends(get_db)):
     return crud_endereco.get_enderecos_pelo_contratante(db, id_contratante)
+
+
+@router.get("/enderecos/cuidador/{id_cuidador}", response_model=List[EnderecoResponse])
+def read_enderecos_cuidador(id_cuidador: int, db: Session = Depends(get_db)):
+    return crud_endereco.get_enderecos_pelo_cuidador(db, id_cuidador)
 
 
 @router.post("/endereco/", response_model=EnderecoResponse)

@@ -1,4 +1,4 @@
-# app/crud/contratante.py
+# app/crud/cuidador.py
 
 from sqlalchemy.orm import Session
 from app.models.cuidador import Cuidador
@@ -17,11 +17,11 @@ def get_cuidadores(db: Session):
 
 
 def get_cuidador(db: Session, id_cuidador: int):
-    return db.query(Cuidador).filter(Cuidador.id_cuidador == id_cuidador).first()
+    return db.query(Cuidador).filter(Cuidador.id == id_cuidador).first()
 
 
 def update_cuidador(db: Session, id_cuidador: int, cuidador: CuidadorUpdate):
-    db_cuidador = db.query(Cuidador).filter(Cuidador.id_cuidador == id_cuidador).first()
+    db_cuidador = db.query(Cuidador).filter(Cuidador.id == id_cuidador).first()
     if db_cuidador:
         for key, value in cuidador.dict(exclude_unset=True).items():
             setattr(db_cuidador, key, value)
@@ -31,7 +31,7 @@ def update_cuidador(db: Session, id_cuidador: int, cuidador: CuidadorUpdate):
 
 
 def delete_cuidador(db: Session, id_cuidador: int):
-    db_cuidador = db.query(Cuidador).filter(Cuidador.id_cuidador == id_cuidador).first()
+    db_cuidador = db.query(Cuidador).filter(Cuidador.id == id_cuidador).first()
     if db_cuidador is None:
         return None
     db.delete(db_cuidador)

@@ -17,11 +17,11 @@ def get_contratantes(db: Session):
 
 
 def get_contratante(db: Session, id_contratante: int):
-    return db.query(Contratante).filter(Contratante.id_contratante == id_contratante).first()
+    return db.query(Contratante).filter(Contratante.id == id_contratante).first()
 
 
 def update_contratante(db: Session, id_contratante: int, contratante: ContratanteUpdate):
-    db_contratante = db.query(Contratante).filter(Contratante.id_contratante == id_contratante).first()
+    db_contratante = db.query(Contratante).filter(Contratante.id == id_contratante).first()
     if db_contratante:
         for key, value in contratante.dict(exclude_unset=True).items():
             setattr(db_contratante, key, value)
@@ -31,7 +31,7 @@ def update_contratante(db: Session, id_contratante: int, contratante: Contratant
 
 
 def delete_contratante(db: Session, id_contratante: int):
-    db_contratante = db.query(Contratante).filter(Contratante.id_contratante == id_contratante).first()
+    db_contratante = db.query(Contratante).filter(Contratante.id == id_contratante).first()
     if db_contratante is None:
         return None
     db.delete(db_contratante)

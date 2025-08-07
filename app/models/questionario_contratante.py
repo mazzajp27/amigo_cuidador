@@ -3,7 +3,7 @@ from sqlalchemy.orm import relationship
 from app.database import Base
 
 class Questionario(Base):
-    __tablename__ = "questionario"
+    __tablename__ = "questionario_contratante"
 
     id_questionario = Column(Integer, primary_key=True, autoincrement=True)
     condicao_medica = Column(String, nullable=True)
@@ -21,6 +21,6 @@ class Questionario(Base):
     
 
     # Foreign key relationship with Contratante
-    id_contratante = Column(Integer, ForeignKey('contratante.id_contratante'), nullable=False)
+    id = Column(Integer, ForeignKey('contratante.id'), nullable=False)
     contratante = relationship("Contratante", back_populates="questionario") 
     

@@ -1,32 +1,34 @@
-# app/schemas/contratante.py
+# app/schemas/cuidador.py
 
 from pydantic import BaseModel, EmailStr
 from typing import Optional
 from datetime import date
+from app.schemas.usuario import UsuarioBase
 
-class CuidadorBase(BaseModel):
-    nome: str
-    cpf: str
-    email: EmailStr
-    telefone: str
-    senha: str
-    genero: Optional[str] = None 
-    data_nascimento: Optional[date] = None
+class CuidadorBase(UsuarioBase):
+    pass
 
 class CuidadorCreate(CuidadorBase):
     pass
 
 class CuidadorUpdate(CuidadorBase):
-    nome: Optional[str] = None
-    cpf: Optional[str] = None
-    email: Optional[EmailStr] = None
-    telefone: Optional[str] = None
-    senha: Optional[str] = None
-    genero: Optional[str] = None
-    data_nascimento: Optional[date] = None
+    pass
 
 class CuidadorResponse(CuidadorBase):
-    id_cuidador: int
+    id: int
+    data_cadastro: date
+    tipo: str
+    status: str
+    
 
     class Config:
-        orm_mode = True
+        from_attributes = True  
+
+class CuidadorListResponse(UsuarioBase):
+    id: int
+    data_cadastro: date
+    tipo: str
+    status: str
+
+    class Config:
+        from_attributes = True

@@ -5,7 +5,7 @@ from app.database import Base
 class HobbiesCuidador(Base):
     __tablename__ = "hobbies_cuidador"
     
-    id_hobbies_cuidador = Column(Integer, primary_key=True, autoincrement=True)
+    id_hobbie = Column(Integer, primary_key=True, autoincrement=True)
     atividades_gosta = Column(String, nullable=False)
     atividades_manuais = Column(String(3), nullable=False)
     gerenero_musical = Column(String, nullable=False)
@@ -15,7 +15,8 @@ class HobbiesCuidador(Base):
     atividades_tecnologicas = Column(String(3), nullable=False)
     comentarios = Column(String, nullable=False)
     
-    id_cuidador = Column(Integer, ForeignKey('cuidador.id_cuidador'), nullable=False)
+    id = Column(Integer, ForeignKey('cuidador.id'), nullable=False)
+    
     cuidador = relationship("Cuidador", back_populates="hobbies")
 
     

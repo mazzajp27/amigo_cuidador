@@ -8,13 +8,13 @@ class EnderecoBase(BaseModel):
     bairro: str
     cep: str
     numero: str
-    complemento: str
+    complemento: Optional[str] = None
     referencia: Optional[str] = None
-    id_contratante: int
 
 
 class EnderecoCreate(EnderecoBase):
-    pass
+    id_contratante: Optional[int] = None
+    id_cuidador: Optional[int] = None
 
 class EnderecoUpdate(BaseModel):
     cep: Optional[str] = None
@@ -25,9 +25,13 @@ class EnderecoUpdate(BaseModel):
     cidade: Optional[str] = None
     estado: Optional[str] = None
     referencia: Optional[str] = None
+    id_contratante: Optional[int] = None
+    id_cuidador: Optional[int] = None
 
 class EnderecoResponse(EnderecoBase):
     id_endereco: int
+    id_contratante: Optional[int] = None
+    id_cuidador: Optional[int] = None
 
     class Config:
-        orm_mode = True 
+        from_attributes = True 

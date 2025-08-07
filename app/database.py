@@ -30,13 +30,13 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
 # Importa os modelos
+from app.models.usuario import Usuario
 from app.models.contratante import Contratante
 from app.models.cuidador import Cuidador
 from app.models.endereco import Endereco
-from app.models.endereco_cuidador import EnderecoCuidador
 from app.models.hobbies import Hobbies
 from app.models.hobbies_cuidador import HobbiesCuidador
-from app.models.questionario import Questionario
+from app.models.questionario_contratante import Questionario
 from app.models.questionario_cuidador import QuestionarioCuidador
 
 # Função para criar todas as tabelas

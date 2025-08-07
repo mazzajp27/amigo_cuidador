@@ -3,7 +3,7 @@ from sqlalchemy.orm import relationship
 from app.database import Base
 
 class Hobbies(Base):
-    __tablename__ = "hobbies"
+    __tablename__ = "hobbies_contratante"
     
     id_hobbie = Column(Integer, primary_key=True, autoincrement=True)
     atividades_gosta = Column(String, nullable=False)
@@ -23,8 +23,9 @@ class Hobbies(Base):
     atividades_tecnologicas_praticadas = Column(String, nullable=False)
     outros_hobbies = Column(String, nullable=False)
     
+    id = Column(Integer, ForeignKey('contratante.id'), nullable=False)
     
-    id_contratante = Column(Integer, ForeignKey('contratante.id_contratante'), nullable=False)
+    
     contratante = relationship("Contratante", back_populates="hobbies")
 
     

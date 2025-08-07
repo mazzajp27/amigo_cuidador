@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from amigo_cuidador.app.models.questionario import QuestionarioContratante
+from amigo_cuidador.app.models.questionario_contratante import QuestionarioContratante
 from amigo_cuidador.app.schemas.questionario import QuestionarioContratanteCreate, QuestionarioContratanteUpdate
 
 def get_questionario(db: Session, id_questionario: int):
