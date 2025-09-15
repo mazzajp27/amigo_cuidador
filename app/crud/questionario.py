@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
-from amigo_cuidador.app.models.questionario_contratante import QuestionarioContratante
-from amigo_cuidador.app.schemas.questionario import QuestionarioContratanteCreate, QuestionarioContratanteUpdate
+from app.models.questionario_contratante import Questionario
+from app.schemas.questionario import QuestionarioContratanteCreate, QuestionarioContratanteUpdate
 
 def get_questionario(db: Session, id_questionario: int):
     return db.query(QuestionarioContratante).filter(QuestionarioContratante.id_questionario == id_questionario).first()
