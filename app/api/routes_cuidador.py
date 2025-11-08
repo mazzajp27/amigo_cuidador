@@ -13,7 +13,7 @@ def get_db():
     finally:
         db.close()
 
-@router.post("/cuidador/", response_model=CuidadorResponse)
+@router.post("/cuidadores/", response_model=CuidadorResponse)
 def create_cuidador(cuidador: CuidadorCreate, db: Session = Depends(get_db)):
     return crud_cuidador.create_cuidador(db, cuidador)
 
