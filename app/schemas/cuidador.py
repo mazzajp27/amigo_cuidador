@@ -1,7 +1,7 @@
-# app/schemas/contratante.py
+# app/schemas/cuidador.py
 
 from pydantic import BaseModel, EmailStr
-from typing import Optional
+from typing import Optional, Dict, Any
 from datetime import date
 
 class CuidadorBase(BaseModel):
@@ -14,7 +14,20 @@ class CuidadorBase(BaseModel):
     data_nascimento: Optional[date] = None
 
 class CuidadorCreate(CuidadorBase):
-    pass
+    # Campos opcionais para dados relacionados que vêm do frontend
+    estado: Optional[str] = None
+    cidade: Optional[str] = None
+    endereco: Optional[str] = None
+    bairro: Optional[str] = None
+    cep: Optional[str] = None
+    numero: Optional[str] = None
+    complemento: Optional[str] = None
+    referencia: Optional[str] = None
+    formacaoAcademica: Optional[Dict[str, Any]] = None
+    experienciaProfissional: Optional[Dict[str, Any]] = None
+    qualidades: Optional[Dict[str, Any]] = None
+    referencias: Optional[Dict[str, Any]] = None
+    interesses: Optional[Dict[str, Any]] = None
 
 class CuidadorUpdate(CuidadorBase):
     nome: Optional[str] = None

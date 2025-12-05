@@ -20,3 +20,4 @@ class Contratante(Base):
     enderecos = relationship("Endereco", back_populates="contratante", cascade="all, delete-orphan")
     questionario = relationship("Questionario", back_populates="contratante", cascade="all, delete-orphan")
     hobbies = relationship("Hobbies", back_populates="contratante", cascade="all, delete-orphan")
+    conversas = relationship("Conversa", back_populates="contratante", cascade="all, delete-orphan")

@@ -18,3 +18,4 @@ class Cuidador(Base):
     enderecos = relationship("EnderecoCuidador", back_populates="cuidador", cascade="all, delete-orphan")
     questionario = relationship("QuestionarioCuidador", back_populates="cuidador", cascade="all, delete-orphan")
     hobbies = relationship("HobbiesCuidador", back_populates="cuidador", cascade="all, delete-orphan")
+    conversas = relationship("Conversa", back_populates="cuidador", cascade="all, delete-orphan")

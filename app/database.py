@@ -38,6 +38,7 @@ from app.models.hobbies import Hobbies
 from app.models.hobbies_cuidador import HobbiesCuidador
 from app.models.questionario import Questionario
 from app.models.questionario_cuidador import QuestionarioCuidador
+from app.models.mensagem import Conversa, Mensagem
 
 # Função para criar todas as tabelas
 def create_tables():

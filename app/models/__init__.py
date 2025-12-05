@@ -6,3 +6,4 @@ from .hobbies import Hobbies
 from .hobbies_cuidador import HobbiesCuidador
 from .questionario import Questionario
 from .questionario_cuidador import QuestionarioCuidador
+from .mensagem import Conversa, Mensagem
