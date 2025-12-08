@@ -50,3 +50,4 @@ class ConversaComUltimaMensagem(BaseModel):
     class Config:
         from_attributes = True
 
+
